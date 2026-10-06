@@ -263,10 +263,19 @@
     resolveChar(id, m, u => {
       if (box.dataset.want !== id + ':' + m) return;
       if (!u) { box.innerHTML = charSvg(id, m); return; }
-      box.innerHTML = /\.(webm|mp4|mov)$/i.test(u) ? '<video src="' + u + '" autoplay loop muted playsinline></video>' : '<img src="' + u + '" alt="' + (CH[id] ? CH[id].name : id) + '">';
+      const html = /\.(webm|mp4|mov)$/i.test(u) ? '<video src="' + u + '" autoplay loop muted playsinline></video>' : '<img src="' + u + '" alt="' + (CH[id] ? CH[id].name : id) + '">';
+      const tmp = box.querySelector('img,video,svg');
+      if (tmp && tmp.getAttribute('src') === u) return;
+      box.innerHTML = html;
     });
-    if (!box.firstChild) box.innerHTML = charSvg(id, m);
   }
 
-  window.WORLD = { BG, CH, MOODS: MOODS_ALL, setBg, putChar, charSvg, resolveChar, bgCss };
+  function preload() {
+    Object.keys(CH).forEach(id => {
+      resolveChar(id, 'neutral', u => { if (u && !/\.(webm|mp4|mov)$/i.test(u)) { const im = new Image(); im.src = u; if (im.decode) im.decode().catch(() => {}); } });
+      if (id === 'mira') ['happy', 'think'].forEach(m => resolveChar(id, m, u => { if (u) { const im = new Image(); im.src = u; } }));
+    });
+  }
+
+  window.WORLD = { BG, CH, MOODS: MOODS_ALL, setBg, putChar, charSvg, resolveChar, bgCss, preload };
 })();

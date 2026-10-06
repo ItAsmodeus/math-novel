@@ -512,6 +512,7 @@
     $app.querySelectorAll('.face').forEach(el => WORLD.putChar(el, el.dataset.id, 'neutral'));
   }
 
+  if (window.WORLD && WORLD.preload) WORLD.preload();
   window.addEventListener('hashchange', route);
   route();
 })();

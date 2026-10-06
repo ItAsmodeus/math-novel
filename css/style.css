@@ -161,3 +161,7 @@ details.sol[open]{color:var(--tx)}
 .hearts i{font-style:normal;color:#3a4058;font-size:1.05rem}
 .hearts i.on{color:#fb7185}
 @media(max-width:640px){.ch{width:62%}.cards{grid-template-columns:1fr}}
+
+.ch .art:empty{opacity:0}
+.ch .art{transition:opacity .25s}
+.face:empty,#heroImg:empty{background:#161c33}
