@@ -71,21 +71,26 @@
   function play(opts) {
     const C = core(), S = C.S(), app = C.app;
     const beats = opts.beats || [];
+    const DEF = opts.speaker || 'mira';
     let stream = makeStream(beats, S);
     let scene = { bg: opts.bg || 'classroom_day', chars: [], speaker: null };
     let history = [], waiting = false, ended = false, cur = null;
 
     app.innerHTML = '<div class="stage vn" id="vn"><div class="bgl on" id="bgA"></div><div class="bgl" id="bgB"></div>' +
       '<div class="prog"><i id="pg"></i></div><div class="hud"><button class="btn ghost sm" id="back">← Выйти</button><div class="ttl">' + C.esc(opts.title || '') +
-      '</div><button class="btn ghost sm" id="prev" title="Назад (←)">◀</button><span id="pos" class="howto"></span></div>' +
+      '</div><button class="btn ghost sm" id="prev" title="Назад (←)">◀</button><span id="pos" class="howto"></span>' +
+      (window.VOICE ? '<button class="btn ghost sm" id="vtg" title="Озвучка">' + (VOICE.isOn() ? '🔊' : '🔇') + '</button>' : '') + '</div>' +
       '<div class="cast" id="cast"></div><div id="layer"></div><div class="dlg"><div class="box" id="box"></div></div></div>';
     const vn = app.querySelector('#vn'), cast = app.querySelector('#cast'), layer = app.querySelector('#layer'), box = app.querySelector('#box');
     const bgs = [app.querySelector('#bgA'), app.querySelector('#bgB')];
     let bgTop = 0;
     W().setBg(bgs[0], scene.bg);
 
-    app.querySelector('#back').onclick = () => opts.onExit && opts.onExit();
+    app.querySelector('#back').onclick = () => { window.VOICE && VOICE.stop(); opts.onExit && opts.onExit(); };
     app.querySelector('#prev').onclick = () => back();
+    const vtg = app.querySelector('#vtg');
+    if (vtg) vtg.onclick = e => { e.stopPropagation(); vtg.textContent = VOICE.toggle() ? '🔊' : '🔇'; };
+    const say = (sp, text) => { if (window.VOICE) VOICE.speak(sp, text); };
 
     function setBgNow(id, animate) {
       const curEl = bgs[bgTop];
@@ -168,25 +173,26 @@
         if (b.bg) scene.bg = b.bg;
         scene.speaker = null; syncScene(true);
         layer.innerHTML = '<div class="titlecard"><div class="tc-main">' + b.title + '</div>' + (b.sub ? '<div class="tc-sub">' + b.sub + '</div>' : '') + '</div>';
-        box.style.display = 'none'; C.math(layer); return;
+        box.style.display = 'none'; C.math(layer); window.VOICE && VOICE.stop(); return;
       }
       if (b.board) {
-        setSpeaker(b.s || 'mira', b.m || b.mood);
+        setSpeaker(b.s || DEF, b.m || b.mood);
         syncScene(true);
         vn.classList.add('hb');
         layer.innerHTML = '<div class="board"><h3>' + b.board + '</h3><div class="bd">' + (b.html || '') + '</div><div class="ft"><button class="btn" id="bn">Понятно, дальше ▶</button></div></div>';
-        box.innerHTML = nameTag(b.s || 'mira') + '<div class="txt">' + (b.say || (opts.boardSay ? opts.boardSay(path) : '')) + '</div>';
+        box.innerHTML = nameTag(b.s || DEF) + '<div class="txt">' + (b.say || (opts.boardSay ? opts.boardSay(path) : '')) + '</div>';
         C.math(layer); C.math(box);
+        say(b.s || DEF, b0.say || (opts.boardSay ? opts.boardSay(path) : ''));
         layer.querySelector('#bn').onclick = next; return;
       }
       if (b.choice || b.pick) {
-        const isPick = !!b.pick, c = b.choice || b.pick;
-        const sp = c.s || b.s || (isPick ? 'narr' : 'mira');
+        const isPick = !!b.pick, c = b.choice || b.pick, c0 = b0.choice || b0.pick;
+        const sp = c.s || b.s || (isPick ? 'narr' : DEF);
         setSpeaker(sp, b.m || b.mood || (isPick ? undefined : 'think'));
         syncScene(true);
         const key = (opts.keyPrefix || '') + path;
         box.innerHTML = nameTag(sp) + '<div class="txt' + (sp === 'narr' ? ' narr' : '') + '">' + c.q + '</div><div class="opts">' + c.opts.map((o, k) => '<button data-k="' + k + '">' + o.t + '</button>').join('') + '</div>';
-        C.math(box); waiting = true;
+        C.math(box); waiting = true; say(sp, c0.q);
         const tx = box.querySelector('.txt'); let first = true;
         const prevPick = isPick ? opts.store[key] : undefined;
         box.querySelectorAll('.opts button').forEach(bt => bt.onclick = e => {
@@ -203,12 +209,12 @@
               C.save();
             }
             const rs = o.rs || (o.r ? (c.rs || sp) : sp);
-            if (o.r) { setSpeaker(rs, o.m); syncScene(true); box.querySelector('.who') && box.querySelector('.who').remove(); tx.insertAdjacentHTML('beforebegin', nameTag(rs)); tx.className = 'txt' + (rs === 'narr' ? ' narr' : ''); tx.innerHTML = o.r; C.math(tx); }
+            if (o.r) { setSpeaker(rs, o.m); syncScene(true); box.querySelector('.who') && box.querySelector('.who').remove(); tx.insertAdjacentHTML('beforebegin', nameTag(rs)); tx.className = 'txt' + (rs === 'narr' ? ' narr' : ''); tx.innerHTML = o.r; C.math(tx); say(rs, c0.opts[k].r); }
             box.querySelector('.opts').style.display = 'none';
             waiting = false; box.insertAdjacentHTML('beforeend', '<div class="nx">нажми — дальше ▶</div>');
           } else {
             bt.classList.add(o.ok ? 'right' : 'wrong');
-            tx.innerHTML = o.r || (o.ok ? 'Верно!' : 'Не совсем.'); C.math(tx);
+            tx.innerHTML = o.r || (o.ok ? 'Верно!' : 'Не совсем.'); C.math(tx); say(sp, c0.opts[k].r || (o.ok ? 'Верно!' : 'Не совсем.'));
             setSpeaker(sp, o.ok ? 'happy' : 'think'); syncScene(true);
             if (o.ok) {
               if (first && !opts.store[key]) { opts.store[key] = true; C.xp(5, 'с первого раза'); C.save(); }
@@ -219,13 +225,13 @@
         });
         return;
       }
-      const sp = b.s || 'mira';
+      const sp = b.s || DEF;
       setSpeaker(sp, b.m || b.mood);
       if (sp === 'you') scene.speaker = '__you';
       if (sp === 'narr') scene.speaker = null;
       syncScene(true);
       box.innerHTML = nameTag(sp) + '<div class="txt' + (sp === 'narr' ? ' narr' : '') + '">' + b.t + '</div><div class="nx">нажми — дальше ▶</div>';
-      C.math(box);
+      C.math(box); say(sp, b0.t);
     }
 
     function syncScene(animate) { setBgNow(scene.bg, animate); syncCast(animate); }
@@ -263,14 +269,14 @@
 
     function finish() {
       ended = true; layer.innerHTML = ''; vn.classList.remove('hb'); box.style.display = '';
-      scene.speaker = null; if (opts.endMood) { ensure('mira', opts.endMood); }
+      scene.speaker = null; if (opts.endMood) { ensure(opts.endSpeaker || DEF, opts.endMood); }
       syncScene(true);
       opts.onPos && opts.onPos(null);
       opts.onFinish && opts.onFinish();
       const btns = (opts.endButtons || []).map((b, k) => '<button data-k="' + k + '">' + b.label + '</button>').join('');
       box.innerHTML = nameTag(opts.endSpeaker || 'narr') + '<div class="txt' + (opts.endSpeaker ? '' : ' narr') + '">' + (opts.endText || 'Конец сцены.') + '</div><div class="opts">' + btns + '</div>';
-      box.querySelectorAll('.opts button').forEach(bt => bt.onclick = e => { e.stopPropagation(); opts.endButtons[bt.dataset.k].fn(); });
-      waiting = true;
+      box.querySelectorAll('.opts button').forEach(bt => bt.onclick = e => { e.stopPropagation(); window.VOICE && VOICE.stop(); opts.endButtons[bt.dataset.k].fn(); });
+      waiting = true; say(opts.endSpeaker, opts.endText);
       progress();
     }
 
@@ -283,7 +289,7 @@
         applyScene(b);
         if (b.title && b.bg) scene.bg = b.bg;
         if ((b.t !== undefined || b.board || b.choice || b.pick) && (b.s || b.board || b.choice || b.pick)) {
-          const sp = b.s || (b.board ? (b.s || 'mira') : (b.choice ? (b.choice.s || 'mira') : (b.pick.s || 'narr')));
+          const sp = b.s || (b.board ? DEF : (b.choice ? (b.choice.s || DEF) : (b.pick.s || 'narr')));
           if (isChar(sp)) ensure(sp, b.m || b.mood);
         }
       }
@@ -305,7 +311,7 @@
     if (startPos !== undefined && startPos !== null && String(startPos) !== '0' && String(startPos) !== '') {
       waiting = true; setBgNow(scene.bg, false);
       box.innerHTML = nameTag(opts.resumeSpeaker || 'narr') + '<div class="txt' + (opts.resumeSpeaker ? '' : ' narr') + '">' + (opts.resumeText || 'Вы остановились на середине. Продолжить с этого места?') + '</div><div class="opts"><button id="r1">Продолжить с того места</button><button id="r2">Начать сначала</button></div>';
-      if (opts.resumeSpeaker) { ensure(opts.resumeSpeaker, 'happy'); syncScene(false); }
+      if (opts.resumeSpeaker) { ensure(opts.resumeSpeaker, 'happy'); syncScene(false); say(opts.resumeSpeaker, opts.resumeText); }
       box.querySelector('#r1').onclick = e => {
         e.stopPropagation();
         const r = fastForward(String(startPos));

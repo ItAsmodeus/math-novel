@@ -1,31 +1,32 @@
 (function () {
   const STYLE = 'anime visual novel style, clean line art, soft cel shading, warm summer light, high detail';
-  const BG_TAIL = ', no characters, no people, no text, wide 16:9 composition, 1920x1080, ' + STYLE;
+  const BG_TAIL = '. Style: high-quality anime visual novel background art, detailed digital painting with soft cel shading and clean fine line art, rich but harmonious colors, volumetric light, subtle depth of field, cinematic anime film scenery. Composition: wide 16:9 shot at eye level with clear foreground, midground and background; keep the center and the lower third calm and uncluttered because a character sprite and a dialogue box will cover them; light source clearly defined. Strictly no characters, no people, no figures, no text, no letters, no logos, no UI, no watermark. 1920x1080.';
 
   const BG_EN = {
-    "station_day": "a small railway station on a lake shore, platform with a canopy roof, rails, pine trees, bright summer morning sky",
-    "station_sunset": "the same small lakeside railway station at sunset, orange sky, long shadows, empty platform, a feeling of farewell",
-    "gate": "ornate wrought-iron entrance gate of an old boarding lyceum, a tree-lined alley behind it and a white building with a red roof, lush summer greenery",
-    "school_hall": "a long bright school corridor with old parquet floor, tall windows along one side, notice boards and posters, daytime light",
-    "classroom_day": "a spacious school classroom in daytime: green chalkboard, rows of wooden desks, large windows with summer light, flowers on the windowsills",
-    "classroom_evening": "the same classroom in the evening: warm orange sunset light from the windows, long shadows from the desks, empty rows",
-    "club_room": "a cozy attic club room: old sofa, kettle and mugs, a chalkboard with formulas, bookshelf, string lights, warm daylight",
-    "club_evening": "the same cozy club room in the evening: desk lamp and string lights on, sunset behind the window, tea and notebooks on the table",
-    "canteen": "a bright school canteen with long wooden tables, windows facing the lake, serving counter with pots, morning light",
-    "library": "an old library full of books up to the ceiling, a rolling ladder, reading tables with green lamps, dust motes in evening sunlight",
-    "lake_beach": "a sandy beach on a lake shore, clear water, pine trees in the distance, a wooden pier, bright sunny day",
-    "lake_sunset": "the same lake shore at sunset: pink-orange sky, golden path on the water, silhouettes of pines, calm and romantic mood",
-    "lake_road": "an asphalt road along a lake, trees and grass on both sides, summer, hills in the distance, good for a bike ride",
-    "forest_path": "a forest trail between tall pines, slanting sun rays, moss and ferns, fresh and slightly mysterious",
-    "mountain_fog": "a hillside with pines in thick morning fog, low visibility, the silhouette of a lake faintly visible below",
-    "campfire_night": "a night campfire in a clearing by a lake, sparks, a starry sky, logs around the fire, warm light on the trees",
-    "rooftop_night": "a flat roof of a lyceum at night, railing, a huge starry sky with the Milky Way, lights of the lake in the distance, quiet",
-    "dorm_room": "a small dormitory room: bed, desk with a lamp, window with a lake view, posters and string lights, evening",
-    "rain_window": "a club room window during a downpour: raindrops on the glass, grey sky, pines outside, cozy warm dim light inside",
-    "fair": "a summer fair on the lyceum square: colorful tent-stalls, garlands of flags and lanterns, a faceless crowd, daytime",
-    "old_lab": "an abandoned quantum laboratory: a gold-colored cryostat with tubes, dusty desks with monitors, whiteboards full of formulas, bluish light, cobwebs, a sense of mystery",
-    "server_room": "a dark computer class at night: rows of monitors with code, green and blue server rack lights, cups of cold coffee",
-    "festival_stage": "an open-air festival stage by a lake in the evening: string lights, spotlights, a screen without text, silhouettes of an audience, festive mood"
+    "station_day": "a small provincial railway station on a calm lake shore on an early summer morning: a low platform with a wooden canopy roof and an old bench, a single track curving away along the water, a dense pine forest on the far shore, a fresh blue sky with soft cumulus clouds, long cool morning shadows. Palette: fresh greens, sky blue, warm weathered wood",
+    "station_sunset": "the same small lakeside railway station at sunset: empty platform, the wooden canopy and bench, the track leading into the distance, the lake reflecting an orange-pink sky, long soft shadows, a quiet bittersweet farewell mood. Palette: warm orange, pink, deep teal water",
+    "gate": "the entrance of an old summer boarding lyceum: tall ornate wrought-iron gates with circular and sine-wave patterns in the metal, stone pillars, a wide tree-lined gravel alley behind them leading to a white two-storey building with a red roof and a small clock tower, lush summer foliage, bright midday sun. Palette: fresh green, white, brick red",
+    "school_hall": "a long bright school corridor in an old building: warm wooden parquet floor, tall arched windows on the left casting bright rectangles of sunlight, notice boards with colorful flyers, a row of lockers, potted plants at the windows, dust motes in the light, perspective vanishing toward a far door. Palette: warm cream walls, golden light, soft green accents",
+    "classroom_day": "a spacious school classroom in daytime: a large green chalkboard with faint chalk formulas and a circle-with-a-dot emblem in the corner, rows of old wooden desks, big windows on the left with summer trees outside, flowers on the windowsill, sunlight beams across the floor, a teacher's desk with a stack of notebooks. Palette: warm wood, chalk green, bright daylight",
+    "classroom_evening": "the same classroom in the evening: deep orange sunset light pouring through the windows, long dramatic shadows of desks across the floor, the green chalkboard glowing faintly, an empty and peaceful atmosphere, a few papers on a desk. Palette: amber, orange, deep brown, muted green",
+    "club_room": "a cozy attic club room under a sloped wooden ceiling: a worn sofa with plaid blankets, a low table with a kettle and mismatched mugs, a big chalkboard with mathematical formulas and a painted circle-with-a-dot emblem, a bookshelf crammed with books and models, hanging string lights, a round attic window with daylight, a few potted plants. Palette: warm wood, soft cream, muted blue and green accents",
+    "club_evening": "the same cozy attic club room in the evening: a desk lamp and string lights glowing warmly, sunset orange light through the round window, steam rising from mugs of tea, open notebooks on the low table, soft long shadows, intimate and homey mood. Palette: honey amber, warm brown, dusk purple in the window",
+    "canteen": "a bright school canteen in the morning: long wooden tables and benches in rows, large windows showing the lake and pines, a serving counter with steaming pots and trays, a chalk menu board without legible text, bowls of fruit, sunlight on the tables, clean and lively atmosphere. Palette: warm wood, fresh green, soft yellow light",
+    "library": "an old two-level school library at sunset: floor-to-ceiling wooden bookshelves, a rolling ladder, a spiral staircase to a gallery, reading tables with green banker lamps, a round window with golden sunbeams full of floating dust, a cozy nook with an armchair. Palette: deep brown, gold, muted green, lavender shadows",
+    "lake_beach": "a sandy beach on a clear mountain lake on a bright summer day: gentle waves, a wooden pier reaching into the water, a few overturned boats, a ring of tall pines, white clouds, sparkling water, distant hills. Palette: turquoise, sand gold, deep pine green, bright blue sky",
+    "lake_sunset": "the same lake shore at sunset: a pink-orange sky with streaked clouds, a golden reflection path across calm water, dark silhouettes of pines and the wooden pier, soft warm rim light on the sand, calm and slightly romantic mood. Palette: peach, rose, gold, deep violet-blue shadows",
+    "lake_road": "a quiet asphalt road winding along a lake on a summer afternoon: tall trees and wildflowers along the verge, a low stone wall, the sparkling lake on one side, soft hills in the distance, dappled sunlight on the road, perspective leading the eye to the horizon, good for a bike ride. Palette: fresh green, warm asphalt gray, sky blue",
+    "forest_path": "a forest trail between tall pines on a bright morning: slanting sunbeams through the trunks, moss, ferns and mushrooms, a winding earth path with roots, a hint of mist, a mossy boulder, fresh and slightly mysterious mood. Palette: emerald and deep green, golden light, soft brown",
+    "mountain_fog": "a hillside trail among scattered pines in thick morning fog: very low visibility, layered soft grey-white mist, the vague silhouette of a lake far below, the closest trees sharp and the distant ones fading, a cold quiet mood. Palette: pale blue-grey, muted green, soft white",
+    "campfire_night": "a night campfire in a clearing by a lake: a bright fire with rising sparks, logs arranged in a circle, a starry sky with the Milky Way, dark pines around, the lake faintly reflecting the stars, warm firelight on the nearest trees and ground. Palette: deep navy, warm orange firelight, silver starlight",
+    "rooftop_night": "a flat rooftop of an old lyceum at night: a metal railing, a water tank and a small door in the distance, a huge starry sky with the Milky Way, faint lights of the lakeside far below, a calm and contemplative mood, soft blue moonlight. Palette: midnight blue, violet, silver, warm window glow",
+    "dorm_room": "a small dormitory room in the evening: a single bed with a patterned blanket, a desk with a lamp and stacked notebooks, a window with the lake and sunset behind it, posters and string lights on the wall, a rug and a few plants, lived-in and cozy. Palette: warm beige, soft orange sunset, muted teal",
+    "rain_window": "a club room window during a heavy downpour: raindrops streaming down the glass, a grey-blue sky and dark pines outside, the interior warmly lit by a small lamp, steam from a mug on the sill, a sense of shelter and quiet. Palette: cool blue-grey outside, warm amber inside",
+    "fair": "a summer fair on the lyceum square on a sunny day: colorful tent-stalls with striped awnings, garlands of paper flags and lanterns, wooden game booths, balloons, a faceless blurred crowd far in the background, bright festive mood. Palette: saturated red, yellow, teal, sky blue",
+    "old_lab": "an abandoned quantum laboratory: a gold-colored cryostat with intricate tubes hanging from the ceiling, dusty desks with old monitors and cables, whiteboards full of faded formulas, a bluish cold glow from a few still-running panels, cobwebs, a slice of daylight from a high dusty window, a sense of mystery and unfinished work. Palette: teal, deep blue, brass gold, grey dust",
+    "server_room": "a dark computer classroom at night: rows of monitors showing glowing lines of code, a server rack with green and blue blinking lights, cups of cold coffee, tangled cables, a hoodie draped over a chair, cool blue light and neon accents. Palette: deep navy, cyan, green, a touch of magenta",
+    "phys_lab": "a bright physics laboratory classroom in the south wing of an old lyceum: a long black optical table with a small red laser beam bouncing between tiny mirrors, a tall pendulum on a thin wire hanging from the high ceiling, wooden lab benches with an old oscilloscope, copper coils, a glass bell jar and brass instruments, a large whiteboard covered with sketches of waves, orbits and arrows, shelves of glass jars and books, a big window on the left showing the lake and pines in summer light, a slightly chaotic but cozy scientific mood. Palette: warm cream walls, brass and copper, sage green, a red laser accent",
+    "festival_stage": "an open-air festival stage by a lake at dusk: strings of warm lights across the stage, spotlights cutting through the evening haze, a large blank screen behind the stage, rows of chairs and silhouetted audience far back, lake and pines in the background, a festive and hopeful mood. Palette: purple dusk sky, warm gold lights, deep blue water"
   };
 
   function rnd(seed) { let s = seed || 1; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
@@ -65,6 +66,7 @@
     monitors: () => [0, 1, 2, 3].map(i => `<g><rect x="${120 + i * 380}" y="430" width="270" height="170" rx="8" fill="#10151f"/><rect x="${132 + i * 380}" y="442" width="246" height="146" fill="#1d4d4a" opacity=".85"/><path d="M${150 + i * 380} 480h120M${150 + i * 380} 510h180M${150 + i * 380} 540h90" stroke="#9ff3d6" stroke-width="5" opacity=".8"/></g>`).join(''),
     sofa: (c) => `<rect x="170" y="560" width="520" height="150" rx="24" fill="${c}"/><rect x="170" y="500" width="520" height="90" rx="24" fill="${c}"/><rect x="150" y="540" width="46" height="170" rx="18" fill="${c}"/><rect x="664" y="540" width="46" height="170" rx="18" fill="${c}"/>`,
     bed: (c) => `<rect x="920" y="520" width="540" height="190" rx="18" fill="${c}"/><rect x="920" y="480" width="120" height="130" rx="18" fill="#f3efe7"/>`,
+    bench: () => [0, 1, 2].map(i => `<g><rect x="${150 + i * 460}" y="520" width="340" height="24" rx="6" fill="#6b4a2b"/><rect x="${170 + i * 460}" y="544" width="16" height="150" fill="#5a3d22"/><rect x="${454 + i * 460}" y="544" width="16" height="150" fill="#5a3d22"/><rect x="${200 + i * 460}" y="470" width="110" height="50" rx="6" fill="#2b3340"/><rect x="${210 + i * 460}" y="480" width="90" height="30" fill="#7fd1c7" opacity=".6"/><circle cx="${400 + i * 460}" cy="495" r="22" fill="none" stroke="#c9873a" stroke-width="8"/></g>`).join('') + `<path d="M800 0V330" stroke="#444" stroke-width="3"/><circle cx="800" cy="345" r="18" fill="#b08d57"/><path d="M60 420h520M60 440h300" stroke="#e03a3a" stroke-width="3" opacity=".8"/>`,
     vig: () => `<defs><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></radialGradient></defs><rect width="1600" height="900" fill="url(#vg)"/>`,
     tint: (c, o) => `<rect width="1600" height="900" fill="${c}" opacity="${o}"/>`
   };
@@ -124,6 +126,8 @@
       desc: 'заброшенная квантовая лаборатория: криостат с блестящими золотистыми трубками, пыльные столы с мониторами, доски в формулах, голубоватый свет, паутина, ощущение тайны', },
     server_room: { title: 'Компьютерный класс, ночь', tier: 3, recipe: [['wall', '#141a2b', '#0b0f1c'], ['monitors'], ['floor', '#0f1424', 700], ['glow', 5, '#63e6be', 19]],
       desc: 'тёмный компьютерный класс ночью: ряды мониторов с кодом, зелёные и голубые огни серверной стойки, чашки с остывшим кофе', },
+    phys_lab: { title: 'Физическая лаборатория (южное крыло)', tier: 1, recipe: [['wall', '#efe8d6', '#cfc3a6'], ['board', 920, 110, 560, 300], ['windows', 1, 120, 300, 320, '#8fd3ff', '#fdf3d7'], ['floor', '#8d8a7a', 650], ['bench'], ['glow', 3, '#fff3b0', 21]],
+      desc: 'светлая физическая лаборатория-класс в южном крыле: оптический стол с лазером, маятник под потолком, осциллограф, катушки, доска со схемами волн и орбит, окно на озеро', },
     festival_stage: { title: 'Сцена фестиваля', tier: 1, recipe: [['sky', '#2a1f4d', '#a45a7a'], ['stars', 60, 4], ['pines', '#150f2a', 600, 9, 5, 380], ['stage'], ['lanterns', 12, 140, 6]],
       desc: 'открытая сцена фестиваля вечером у озера: гирлянды, прожекторы, экран с надписью без текста, зрители-силуэты, праздничное настроение', },
     black: { title: 'Чёрный экран', tier: 0, recipe: [['wall', '#000', '#000']], desc: 'служебный', }
@@ -159,6 +163,10 @@
       look: { skin: '#f1cdb4', hair: '#27c4b0', eyes: '#2a3a55', style: 'bob', glasses: false, outfit: '#2f3b4f', accent: '#ff5d8f', headphones: true },
       desc: '18 лет, ночной кодер, наушники никогда не снимает, прячется за ноутбуком от людей. Через неё идут алгоритмы, графы и тема «вернуться к людям».',
       appearance: 'a tired but clever 18-year-old girl hacker, short teal-turquoise bob haircut with uneven bangs, sleepy half-lidded dark-blue eyes with faint dark circles, big over-ear headphones around her neck, an oversized dark hoodie with a small pink pixel-heart print over the school uniform, a laptop under her arm, slight smirk' },
+    vega: { bio: 'Физик-экспериментатор из университета, ведёт физику этим летом. Говорит быстро, всё проверяет руками, в карманах халата всегда что-то звенит. На любой спор отвечает «Давай проверим!». Шесть лет назад училась в «Горизонте» сама и о старой лаборатории знает больше, чем говорит.', id: 'vega', name: 'Вега', color: '#fbbf24', tier: 0, role: 'преподаватель физики, экспериментатор',
+      look: { skin: '#f6d3b8', hair: '#9a9ca6', eyes: '#d98b2b', style: 'bun', glasses: false, outfit: '#f3efe6', accent: '#e0b23a', goggles: true },
+      desc: '24 года, выпускница физфака, экспериментатор. Пепельно-серые волосы в небрежном пучке с карандашом, янтарные глаза, веснушки, белый халат поверх горчичной водолазки, очки-гогглы на голове. Энергичная, быстрая, всё проверяет опытом. Ведёт физический трек курса (все уроки P00–P16) и полуденные сцены. Через неё идёт тема «теория против эксперимента» и вторая половина тайны лаборатории.',
+      appearance: 'a bright, energetic 24-year-old female physicist, ash-grey hair in a loose messy high bun with a pencil stuck through it and a few loose strands framing her face, large warm amber-gold eyes, light freckles, a small confident grin, wearing an unbuttoned white lab coat with rolled-up sleeves and a faint scorch mark on one cuff over a mustard-yellow fitted turtleneck, dark high-waisted shorts, white sneakers, laboratory safety goggles pushed up on her head, an ID badge on a lanyard, holding a small red laser pointer, lively posture' },
     director: { id: 'director', name: 'Директор Орлов', color: '#94a3b8', tier: 3, role: 'директор лицея (эпизодический)',
       look: { skin: '#e8c4a8', hair: '#8a8a95', eyes: '#3a3a45', style: 'short', glasses: true, outfit: '#3a3f4f', accent: '#d9b84a' },
       desc: 'Валентин Сергеевич Орлов, директор лицея. Деловой и прагматичный, не злодей: ему нужны результаты, а не красота. Появляется редко. Картинка необязательна.',
@@ -194,6 +202,7 @@
     const hairTop = L.style === 'bob'
       ? `<path d="M122 205c-6-110 40-150 80-150s86 40 78 150c-6-30-12-60-30-78-30 20-90 20-130 0-12 20-14 48-18 78z" fill="${L.hair}"/><path d="M118 190v70h26v-70zM256 190v70h26v-70z" fill="${L.hair}"/>`
       : L.style === 'short' ? `<path d="M130 160c0-70 30-100 72-100s70 30 68 100c-20-30-40-40-68-40s-52 10-72 40z" fill="${L.hair}"/>`
+        : L.style === 'bun' ? `<circle cx="214" cy="78" r="42" fill="${L.hair}"/><path d="M176 60l80-30" stroke="#c9873a" stroke-width="6" stroke-linecap="round"/><path d="M126 190c-8-90 36-140 76-140s84 50 76 140c-16-40-30-60-56-70-30 22-70 22-100 0-10 20-14 46-20 70z" fill="${L.hair}"/><path d="M122 150c-10 40-6 80 6 100" stroke="${L.hair}" stroke-width="10" fill="none" stroke-linecap="round"/>`
         : `<path d="M122 205c-6-110 40-150 80-150s86 40 78 150c-10-40-20-70-40-86-40 30-80 30-120 0-10 16-14 46-18 86z" fill="${L.hair}"/>`;
     const eyeY = 205, eyes = {
       happy: [-1, 1].map(s => `<path d="M${200 + s * 40 - 16} ${eyeY + 4}q16 -22 32 0" stroke="#2a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>`).join(''),
@@ -211,9 +220,10 @@
       think: '<path d="M188 266q12 5 24 -2" stroke="#a5424f" stroke-width="4" fill="none" stroke-linecap="round"/>'
     }[m] || '<path d="M184 264q16 12 32 0" stroke="#a5424f" stroke-width="4" fill="none" stroke-linecap="round"/>';
     const glasses = L.glasses ? `<g fill="none" stroke="#222" stroke-width="4"><rect x="144" y="186" width="48" height="40" rx="12"/><rect x="208" y="186" width="48" height="40" rx="12"/><path d="M192 204h16"/></g>` : '';
+    const goggles = L.goggles ? `<g fill="none" stroke="#333" stroke-width="5"><path d="M130 128q70-26 140 0" /><rect x="148" y="104" width="40" height="26" rx="10" fill="#9fe0f0" opacity=".9"/><rect x="212" y="104" width="40" height="26" rx="10" fill="#9fe0f0" opacity=".9"/></g>` : '';
     const phones = L.headphones ? `<path d="M126 190c0-80 150-80 148 0" stroke="#222" stroke-width="12" fill="none"/><rect x="112" y="176" width="26" height="50" rx="10" fill="#222"/><rect x="262" y="176" width="26" height="50" rx="10" fill="${L.accent}"/>` : '';
     const body = `<rect x="176" y="270" width="48" height="90" fill="${L.skin}"/><path d="M30 700c0-210 60-340 170-340s170 130 170 340z" fill="${L.outfit}"/><path d="M164 348l36 90 36-90z" fill="#fff" opacity=".92"/><path d="M200 438l-22-70M200 438l22-70" stroke="${L.accent}" stroke-width="6" stroke-linecap="round"/>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">${hairBack}${body}<ellipse cx="200" cy="200" rx="76" ry="88" fill="${L.skin}"/>${hairTop}${eyes}${mouth}${glasses}${phones}</svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">${hairBack}${body}<ellipse cx="200" cy="200" rx="76" ry="88" fill="${L.skin}"/>${hairTop}${eyes}${mouth}${glasses}${goggles}${phones}</svg>`;
   }
 
   function bgCss(id) {
@@ -273,7 +283,7 @@
   function preload() {
     Object.keys(CH).forEach(id => {
       resolveChar(id, 'neutral', u => { if (u && !/\.(webm|mp4|mov)$/i.test(u)) { const im = new Image(); im.src = u; if (im.decode) im.decode().catch(() => {}); } });
-      if (id === 'mira') ['happy', 'think'].forEach(m => resolveChar(id, m, u => { if (u) { const im = new Image(); im.src = u; } }));
+      if (id === 'mira' || id === 'vega') ['happy', 'think'].forEach(m => resolveChar(id, m, u => { if (u) { const im = new Image(); im.src = u; } }));
     });
   }
 

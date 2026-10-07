@@ -165,3 +165,9 @@ details.sol[open]{color:var(--tx)}
 .ch .art:empty{opacity:0}
 .ch .art{transition:opacity .25s}
 .face:empty,#heroImg:empty{background:#161c33}
+
+/* ---- physics lab (iframe) ---- */
+.labframe{width:100%;height:640px;border:1px solid var(--line);border-radius:12px;background:#090b10;display:block}
+.labbtns{margin:6px 0 10px}
+.hero a.btn{text-decoration:none}
+@media(max-width:640px){.labframe{height:520px}}
